@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
-import { formartQueryURL } from 'aqara-lib';
+import { formartQueryURL } from '@/utils/utils';
 import LoadingBar from '@/components/loading-bar/index';
 import { ElMessage } from 'element-plus';
 

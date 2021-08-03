@@ -1,6 +1,6 @@
 import routeWhiteList from '@/router/whiteList';
 import asyncRoutes from '@/router/module';
-import { compareByProp } from 'aqara-lib';
+import { compareByProp } from '@/utils/utils';
 import { MutationTree, ActionTree } from 'vuex';
 import { StoreLib } from '@/@types/store.d';
 /**

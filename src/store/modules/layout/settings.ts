@@ -1,5 +1,5 @@
 import layoutSettings from '@/layout/layout';
-import { hasOwn } from 'aqara-lib';
+import { hasOwn } from '@/utils/utils';
 import { MutationTree, ActionTree } from 'vuex';
 import { StoreLib } from '@/@types/store.d';
 

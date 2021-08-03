@@ -1,5 +1,5 @@
 // see: https://github.com/ElemeFE/element/blob/dev/packages/upload/src/ajax.js
-import { hasOwn } from 'aqara-lib';
+import { hasOwn } from '../utils';
 
 export type AjaxType = 'post' | 'put';
 

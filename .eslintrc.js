@@ -59,7 +59,7 @@ module.exports = {
         'no-fallthrough': 2,
         'default-case': 2,
         'no-useless-constructor': 2,
-        'no-unused-expressions': 2,
+        'no-unused-expressions': ["error", { "allowShortCircuit": true }],
         // 关闭iview input组件，col组件个别标签报错
         'vue/no-parsing-error': [2, { 'x-invalid-end-tag': false }],
         // 保证js、ts项目arrow风格一致

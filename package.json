@@ -15,7 +15,6 @@
         "ls-lint": "ls-lint"
     },
     "dependencies": {
-        "aqara-lib": "^1.0.7",
         "axios": "0.19.2",
         "core-js": "^3.6.5",
         "echarts": "^5.1.2",

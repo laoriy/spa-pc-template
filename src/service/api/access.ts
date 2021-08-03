@@ -1,4 +1,4 @@
-import { GenerateFetch } from 'aqara-lib';
+import { GenerateFetch } from '@/utils/utils';
 import ajax from '../utils/ajax';
 
 const apis = {
