@@ -11,13 +11,16 @@
     </div>
 </template>
 
-<script>
-import { mapGetters } from 'vuex';
+<script lang="ts">
+import { StoreLib } from '@/@types/store.d';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
     name: 'ModulePermission',
     computed: {
-        ...mapGetters(['hasOperator']),
+        hasOperator() {
+            return this.$store.getters.hasOperator as StoreLib.HasOperator;
+        },
     },
-};
+});
 </script>

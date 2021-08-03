@@ -1,4 +1,3 @@
-/* eslint-disable prefer-destructuring */
 // 自定义指令
 import { addClass } from '@/utils/addClass';
 import { DirectiveBinding, Directive } from 'vue';
@@ -19,13 +18,13 @@ const buttonOperator = {
     handler: {
         created(el: HTMLElement, binding: DirectiveBinding) {
             const { value, instance } = binding;
-            if (!instance.$store.getters.hasOperator(value)) {
+            if (!instance?.$store.getters.hasOperator(value)) {
                 el.addEventListener('click', stopPropagationFn, true);
             }
         },
         mounted(el: HTMLElement, binding: DirectiveBinding) {
             const { value, instance } = binding;
-            if (!instance.$store.getters.hasOperator(value)) {
+            if (!instance?.$store.getters.hasOperator(value)) {
                 (el as PlianObj).disabled = true;
                 addClass(el, 'is-disabled');
             }

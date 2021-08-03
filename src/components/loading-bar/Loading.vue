@@ -85,8 +85,8 @@ export default defineComponent({
     }
 
     .lv-loading-bar-inner-color-primary {
-        background-color: #409eff;
-        /* background-image: linear-gradient(to right, #2572ff, #ff6be8, #ffa619, #7fff79); */
+        // background-color: #409eff;
+        background-image: linear-gradient(to right, #2572ff, #ff6be8, #ffa619, #7fff79);
     }
 
     .lv-loading-bar-inner-failed-color-error {

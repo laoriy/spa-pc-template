@@ -25,16 +25,23 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapState, mapGetters } from 'vuex';
 import StyleVar from '@/assets/css/var.less';
+import { StoreLib } from '@/@types/store.d';
 import Logo from './SidebarLogo.vue';
 import SidebarItem from './SidebarItem.vue';
 
 export default defineComponent({
     name: 'Siderbar',
     computed: {
-        ...mapState(['settings']),
-        ...mapGetters(['sidebar', 'allRoutes']),
+        settings(): StoreLib.SettingsState {
+            return this.$store.state.settings;
+        },
+        sidebar(): StoreLib.Sidebar {
+            return this.$store.state.app.sidebar;
+        },
+        allRoutes(): StoreLib.Path[] {
+            return this.$store.state.permission.routes;
+        },
         activeMenu() {
             const route = this.$route;
             const { meta, path } = route;

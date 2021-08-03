@@ -24,7 +24,7 @@
         // 解析非相对模块名的基准目录
         "baseUrl": ".",
         // 启用严格的 null 检查
-        "strictNullChecks": false,
+        "strictNullChecks": true,
         // 以严格模式解析每个模块并加入 'use strict'
         "alwaysStrict": true,
         // 禁止this 值为 any

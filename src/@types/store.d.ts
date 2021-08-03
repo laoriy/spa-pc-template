@@ -41,6 +41,8 @@ export declare namespace StoreLib {
         count: number;
     }
 
+    type HasOperator = (queryCode: string) => boolean;
+
     interface AppGetters {
         // getters
         app: AppState;

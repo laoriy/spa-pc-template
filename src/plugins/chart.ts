@@ -1,14 +1,17 @@
 import * as echarts from 'echarts/core';
-import { EChartsType } from 'echarts/core';
+import { use, EChartsType } from 'echarts/core';
 // 引入 Canvas 渲染器，注意引入 CanvasRenderer 或者 SVGRenderer 是必须的一步
 import { CanvasRenderer } from 'echarts/renderers';
 
 type PlianObj = Record<string, any>;
 type RendererType = 'canvas' | 'svg';
+type ArrayGeneric<T> = T extends Array<infer K> ? K : T;
+type ChartsExtension = ArrayGeneric<Parameters<typeof use>[0]>;
+
 interface InitObj {
     dom: HTMLElement;
     theme?: object | string;
-    chartList: Array<unknown>;
+    chartList: ChartsExtension[];
     opts?: {
         devicePixelRatio?: number;
         renderer?: RendererType;

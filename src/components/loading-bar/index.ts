@@ -10,7 +10,7 @@ let timer: any;
 function getLoadingBarInstance() {
     loadingBarInstance =
         loadingBarInstance ||
-        (LoadingBar as any).newInstance({
+        LoadingBar.newInstance({
             color,
             failedColor,
             height,
@@ -95,19 +95,15 @@ export default {
     },
     config(options: any) {
         if (options.color) {
-            // eslint-disable-next-line prefer-destructuring
             color = options.color;
         }
         if (options.duration) {
-            // eslint-disable-next-line prefer-destructuring
             duration = options.duration;
         }
         if (options.failedColor) {
-            // eslint-disable-next-line prefer-destructuring
             failedColor = options.failedColor;
         }
         if (options.height) {
-            // eslint-disable-next-line prefer-destructuring
             height = options.height;
         }
     },

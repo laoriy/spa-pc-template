@@ -26,14 +26,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapState } from 'vuex';
 import { compile } from 'path-to-regexp';
+import { StoreLib } from '@/@types/store.d';
 
 interface Breadcrumb {
     name?: string;
     path?: string;
     redirect?: string;
-    meta?: {
+    meta: {
         title?: string;
         showBreadcrumb?: boolean;
         hiddenPage?: boolean;
@@ -46,12 +46,14 @@ export default defineComponent({
     name: 'AppBreadcrumb',
     data() {
         return {
-            levelList: null,
+            levelList: [] as Breadcrumb[],
             activeColor: 'rgba(0, 0, 0, 0.65)',
         };
     },
     computed: {
-        ...mapState(['settings']),
+        settings(): StoreLib.SettingsState {
+            return this.$store.state.settings;
+        },
         breadcrumbClickable(): boolean {
             return this.settings.clickableBreadcrumb;
         },
@@ -85,16 +87,18 @@ export default defineComponent({
             const [
                 {
                     meta: { title = '', showBreadcrumb = true, onHidden = false },
-                    parent = {},
+                    parent = {
+                        meta: {},
+                    },
                 },
-            ] = currPage.length > 0 ? currPage : [{ meta: {} }];
+            ] = currPage.length > 0 ? currPage : [{ meta: {}, parent: { meta: {} } }];
 
             // 处理当前父路由下子路由有隐藏页面
             if (parent.meta && parent.meta.hiddenPage && onHidden) {
                 matched.splice(-1, 0, parent);
             }
 
-            this.levelList = title && showBreadcrumb ? matched : [];
+            this.levelList = (title && showBreadcrumb ? matched : []) as Breadcrumb[];
         },
         isHomeRouter(route: Breadcrumb) {
             let name = route && route.name;
@@ -113,7 +117,7 @@ export default defineComponent({
             return toPath(params);
         },
         handleLink(item: Breadcrumb) {
-            const { redirect, path } = item;
+            const { redirect, path = '' } = item;
             if (redirect) {
                 this.$router.push(redirect).catch(() => {});
                 return;

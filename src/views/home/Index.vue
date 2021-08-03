@@ -15,23 +15,30 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from 'vuex';
-import MixinDemo from '@/mixin/Demo.vue';
 import { defineComponent } from 'vue';
+import { StoreLib } from '@/@types/store.d';
+import useHook from '@/useFunctions/useHook';
 
 export default defineComponent({
-    extends: MixinDemo,
     name: 'Dashboard',
     computed: {
-        ...mapGetters(['name']),
+        name(): string {
+            return (this.$store.getters as StoreLib.UserState).name;
+        },
     },
     data() {
         return {
             value1: '',
         };
     },
-    created() {
+    mounted() {
         this.ok();
+    },
+    setup() {
+        const { ok } = useHook();
+        return {
+            ok,
+        };
     },
 });
 </script>

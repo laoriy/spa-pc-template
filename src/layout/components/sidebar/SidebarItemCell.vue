@@ -1,5 +1,7 @@
-<script>
-export default {
+<script lang="tsx">
+import { defineComponent, VNode } from 'vue';
+
+export default defineComponent({
     name: 'SidebarItemCell',
     props: {
         icon: {
@@ -11,24 +13,15 @@ export default {
             default: '',
         },
     },
-    render(props) {
-        const { icon, title } = props;
-        const vnodes = [];
-
-        // jsx 语法
-        if (icon) {
-            vnodes.push(<i class={['iconfont', 'menu-icon', icon]}></i>);
+    setup(props) {
+        const vnodes: VNode[] = [];
+        if (props.icon) {
+            vnodes.push(<i class={['iconfont', 'menu-icon', props.icon]}></i>);
         }
-
-        if (title) {
-            vnodes.push(
-                <span slot="title" class={icon ? '' : 'single-txt'}>
-                    {title}
-                </span>
-            );
+        if (props.title) {
+            vnodes.push(<span class={props.icon ? '' : 'single-txt'}>{props.title}</span>);
         }
-
-        return vnodes;
+        return () => <>{...vnodes}</>;
     },
-};
+});
 </script>

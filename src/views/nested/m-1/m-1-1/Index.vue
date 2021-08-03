@@ -23,7 +23,7 @@ import { LineChart } from 'echarts/charts';
 export default defineComponent({
     data() {
         return {
-            instance: null,
+            instance: (null as any) as Chart,
         };
     },
     mounted() {
@@ -42,7 +42,7 @@ export default defineComponent({
                 },
             ],
         };
-        const dom = document.getElementById('chart');
+        const dom = document.getElementById('chart') as HTMLElement;
         this.instance = new Chart({
             dom,
             chartList: [GridComponent, LineChart],

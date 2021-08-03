@@ -56,6 +56,7 @@ interface Path {
     path: string;
     children?: Path;
 }
+
 export default defineComponent({
     name: 'SidebarItem',
     props: {
@@ -78,7 +79,7 @@ export default defineComponent({
         // TODO: refactor with render function
         // this.onlyOneChild = null;
         return {
-            onlyOneChild: null,
+            onlyOneChild: (null as any) as PlianObj,
         };
     },
     components: { ItemCell, AppLink },
@@ -114,14 +115,8 @@ export default defineComponent({
             return false;
         },
         resolvePath(routePath: string) {
-            if (isExternal(routePath)) {
-                return routePath;
-            }
-            // @ts-ignore
-            if (isExternal(this.basePath)) {
-                return this.basePath;
-            }
-            // @ts-ignore
+            if (isExternal(routePath)) return routePath;
+            if (isExternal(this.basePath)) return this.basePath;
             return path.resolve(this.basePath, routePath);
         },
     },

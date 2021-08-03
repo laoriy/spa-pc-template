@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapState } from 'vuex';
+import { StoreLib } from '@/@types/store.d';
 
 export default defineComponent({
     name: 'SidebarLogo',
@@ -27,7 +27,9 @@ export default defineComponent({
         },
     },
     computed: {
-        ...mapState(['settings']),
+        settings(): StoreLib.SettingsState {
+            return this.$store.state.settings;
+        },
         title(): string {
             return this.settings.title;
         },

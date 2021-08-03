@@ -1,9 +1,7 @@
 import { createApp } from 'vue';
 import Loading from './Loading.vue';
 
-(Loading as any).newInstance = () => {
-    // const _props = properties || {};
-
+Loading.newInstance = () => {
     const Instance = createApp(Loading);
     const el = document.createElement('div');
     document.body.appendChild(el);
@@ -25,7 +23,7 @@ import Loading from './Loading.vue';
         component: loading_bar,
         destroy() {
             document.body.removeChild(
-                document.getElementsByClassName('lv-loading-bar')[0].parentNode
+                document.getElementsByClassName('lv-loading-bar')[0].parentNode as Node
             );
         },
     };

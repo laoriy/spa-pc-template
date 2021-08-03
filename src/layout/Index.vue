@@ -18,46 +18,42 @@
 </template>
 
 <script lang="ts">
-import { mapState } from 'vuex';
-import { StoreLib } from '@/@types/store.d';
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
+import { useStore } from '@/store/index';
 import Breadcrumb from './components/bread-crumb/Index.vue';
 import { Navbar, Sidebar, AppMain } from './components';
-import ResizeMixin from './mixin/ResizeHandler.vue';
+import useResize from './useFunctions/useResize';
 
 export default defineComponent({
     name: 'Layout',
-    extends: ResizeMixin,
-    computed: {
-        ...mapState(['app', 'settings']),
-        sidebar(): StoreLib.Sidebar {
-            return this.app.sidebar;
-        },
-        device(): StoreLib.deviceType {
-            return this.app.device;
-        },
-        fixedHeader(): boolean {
-            return this.settings.fixedHeader;
-        },
-        classObj(): object {
-            return {
-                hideSidebar: !this.sidebar.opened,
-                openSidebar: this.sidebar.opened,
-                withoutAnimation: this.sidebar.withoutAnimation,
-                mobile: this.device === 'mobile',
-            };
-        },
+    setup() {
+        const { device, sidebar } = useResize();
+        const store = useStore();
+
+        const fixedHeader = computed(() => store.state.settings.fixedHeader);
+        const classObj = computed(() => ({
+            hideSidebar: !sidebar.value.opened,
+            openSidebar: sidebar.value.opened,
+            withoutAnimation: sidebar.value.withoutAnimation,
+            mobile: device.value === 'mobile',
+        }));
+
+        const handleClickOutside = () => {
+            store.dispatch('app/closeSideBar', { withoutAnimation: false });
+        };
+        return {
+            classObj,
+            fixedHeader,
+            device,
+            sidebar,
+            handleClickOutside,
+        };
     },
     components: {
         Navbar,
         Sidebar,
         Breadcrumb,
         AppMain,
-    },
-    methods: {
-        handleClickOutside() {
-            this.$store.dispatch('app/closeSideBar', { withoutAnimation: false });
-        },
     },
 });
 </script>

@@ -2,7 +2,7 @@ import ElementPlus from 'element-plus'; // 生产环境使用cdn所以全局引�
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router/index';
-import store from './store';
+import store, { key } from './store';
 import { i18n, initDirectives, Emitter } from './plugins';
 import interceptor from './permission';
 
@@ -20,6 +20,6 @@ app.use(ElementPlus, {
     i18n: i18n.global.t,
 });
 app.use(i18n);
-app.use(store)
+app.use(store, key)
     .use(router)
     .mount('#app');

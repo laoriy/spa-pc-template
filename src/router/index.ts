@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, Router } from 'vue-router';
+import { createRouter, createWebHashHistory, Router, RouteRecordRaw } from 'vue-router';
 
 import whiteList from './whiteList';
 
@@ -8,8 +8,8 @@ const initRouter = () =>
     createRouter({
         history: createWebHashHistory(),
         scrollBehavior: () => ({ left: 0, top: 0 }),
-        // @ts-ignore
-        routes: whiteList,
+        // Property 'redirect' is optional in 'RouteTreeRaw'
+        routes: whiteList as RouteRecordRaw[],
     });
 
 const router = initRouter();

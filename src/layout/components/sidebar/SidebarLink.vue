@@ -10,7 +10,7 @@ import { isExternal } from '@/utils/validate';
 export default defineComponent({
     computed: {
         isExternalUrl(): boolean {
-            return isExternal(this.to as string);
+            return isExternal(this.to);
         },
     },
     name: 'SiderbarLink',

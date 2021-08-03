@@ -57,8 +57,7 @@
                         | -- xxx.ts xxx请求模块对象
                         | -- types.ts 请求模块对象类型推断声明文件
                     | -- utils 请求模块插件
-                        | -- ajax.ts 请求封装
-                        | -- genApi.ts 请求模块包装器            
+                        | -- ajax.ts 请求封装   
                         | -- ......       
 
                 | -- store Vuex配置

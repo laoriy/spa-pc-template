@@ -47,13 +47,21 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapGetters } from 'vuex';
+import { StoreLib } from '@/@types/store.d';
 import Hamburger from './hamburger/Index.vue';
 
 export default defineComponent({
     name: 'Navbar',
     computed: {
-        ...mapGetters(['sidebar', 'name', 'avatar']),
+        name(): string {
+            return (this.$store.getters as StoreLib.UserState).name;
+        },
+        sidebar(): StoreLib.Sidebar {
+            return (this.$store.getters as StoreLib.AppState).sidebar;
+        },
+        avatar(): string {
+            return (this.$store.getters as StoreLib.UserState).avatar;
+        },
     },
     components: {
         Hamburger,
