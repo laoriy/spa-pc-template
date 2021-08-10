@@ -68,6 +68,7 @@ module.exports = {
         // ts 任意枚举报错问题
         'no-shadow': 'off',
         '@typescript-eslint/no-shadow': ['error'],
+        "max-classes-per-file": 0
     },
     overrides: [
         {
